@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build:react": "",
-    "build:vue": "",
-    "build:wx": ""
+    "build:react": "rollup -c",
+    "build:vue": "rollup -c",
+    "build:wx": "rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-terser": "^0.4.4"
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "tslib": "^2.8.1"
   }
 }
