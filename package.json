@@ -4,21 +4,70 @@
   "description": "a scalable low code platform",
   "main": "index.js",
   "scripts": {
+    "dev-admin": "",
+    "dev-renderer-react": "",
+    "dev-renderer-vue": "",
+    "dev-renderer-wx": "",
+    "build-admin": "",
+    "build-renderer-react": "",
+    "build-renderer-vue": "",
+    "build-renderer-wx": "",
+    "pack-repo": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "zard huang",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.tsx": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^22.9.0",
     "@typescript-eslint/eslint-plugin": "^8.13.0",
     "@typescript-eslint/parser": "^8.13.0",
     "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-vue": "^9.30.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
     "rollup": "^4.25.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.80.6",
+    "typescript": "^5.6.3",
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "ant-design-vue": "^4.2.5",
+    "antd": "^5.21.6"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "name": "component-repo-vue",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": ""
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.vue$": "jest-vue-preprocessor",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ]
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.6",
+    "jest-vue-preprocessor": "^1.7.1"
+  }
+}

@@ -1,0 +1,20 @@
+import babel from '@rollup/plugin-babel';
+import { terser } from '@rollup/plugin-terser';
+
+const config = {
+    input: 'src/index.js',
+    output: {
+        name: 'core',
+        file: 'dist/index.js',
+        format: 'umd',
+    },
+    plugins: [
+        babel({
+            exclude: 'node_modules/**', // 排除 node_modules
+            babelHelpers: 'bundled',
+        }),
+        terser()
+    ]
+}
+
+export default config
