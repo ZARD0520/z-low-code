@@ -6,22 +6,21 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "jest": {
     "transform": {
-      "^.+\\.vue$": "jest-vue-preprocessor",
       "^.+\\.js$": "babel-jest"
     },
+    "testMatch": [
+      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx|vue)|**/__tests__/*.(js|jsx|ts|tsx|vue)"
+    ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ]
+    }
   },
   "devDependencies": {
-    "@vue/test-utils": "^2.4.6",
-    "jest-vue-preprocessor": "^1.7.1"
+    "@vue/test-utils": "^2.4.6"
   }
 }
