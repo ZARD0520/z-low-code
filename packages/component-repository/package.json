@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build:react": "rollup -c",
-    "build:vue": "rollup -c",
-    "build:wx": "rollup -c"
+    "build": "rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",

@@ -2,8 +2,11 @@
   "name": "component-repo-react",
   "version": "0.0.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": ""
+    "build": "rollup -c"
   },
   "jest": {
     "setupFilesAfterEnv": [
