@@ -2,14 +2,22 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "declaration": true,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["components/*"]
+      "@/*": [
+        "components/*"
+      ]
     }
   },
-  "include": ["components/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "components/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

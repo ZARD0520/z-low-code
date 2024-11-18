@@ -15,7 +15,11 @@ const config = {
     }
   ],
   plugins: [
-    typescript(),
+    typescript({
+      tsconfig: './tsconfig.json',
+      exclude: ['node_modules'],
+      sourceMap: true
+    }),
     babel({
       exclude: 'node_modules/**', // 排除 node_modules
       babelHelpers: 'bundled',
