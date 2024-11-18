@@ -1,3 +1,4 @@
+import vue from 'rollup-plugin-vue'
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript'
@@ -19,7 +20,11 @@ const config = {
       exclude: 'node_modules/**', // 排除 node_modules
       babelHelpers: 'bundled',
     }),
-    terser()
+    terser(),
+    vue({
+      css: true,
+      compileTemplate: true
+    })
   ]
 }
 
