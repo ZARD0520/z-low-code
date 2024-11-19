@@ -12,9 +12,21 @@ const components: ComponentObject = {
 }
 
 export default {
-  install(app: App) {
-    Object.entries(components).forEach(([name, component]) => {
-      app.component(name, component);
-    })
+  install(app: App, componentMap: ComponentObject, registerComponents?: string[]) {
+    if (registerComponents) {
+      // 指定注册
+      registerComponents.forEach((name) => {
+        if (components[name]) {
+          componentMap[name] = components[name]
+          app.component(name, components[name])
+        }
+      })
+    } else {
+      // 全量注册
+      Object.entries(components).forEach(([name, component]) => {
+        componentMap[name] = components[name]
+        app.component(name, component);
+      })
+    }
   }
 }

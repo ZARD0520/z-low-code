@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "ESNext",
-    "lib": [
-      "ESNext"
-    ],
-    "declaration": true,
-    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitHelpers": true,
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "components/*"
-      ]
+      "@/*": ["components/*"]
     }
   },
-  "include": [
-    "components/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["components/**/*.ts", "components/**/*.vue"],
+  "exclude": ["node_modules"]
 }
