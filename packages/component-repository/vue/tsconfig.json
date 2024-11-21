@@ -12,6 +12,8 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitHelpers": true,
+    "declaration": true,
+    "declarationDir": "dist/types",
     "lib": ["esnext", "dom"],
     "types": ["node"],
     "baseUrl": ".",
@@ -19,6 +21,6 @@
       "@/*": ["components/*"]
     }
   },
-  "include": ["components/**/*.ts", "components/**/*.vue"],
+  "include": ["components/**/*", "./*"],
   "exclude": ["node_modules"]
 }

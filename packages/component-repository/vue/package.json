@@ -9,6 +9,7 @@
     "build": "rollup -c",
     "test": "jest"
   },
+  "main": "./dist/component.js",
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"

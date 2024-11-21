@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+// import ComponentLib from 'component-repo-vue'
+// import ComponentLib from '../../component-repository/vue/dist'
 
-createApp(App).mount('#app')
+createApp(App)
+    .use(ComponentLib)
+    .mount('#app')

@@ -1,4 +1,4 @@
-import { App, DefineComponent } from 'vue'
+import { App, PropType } from 'vue'
 // 导入基础组件
 import {
   Button,
@@ -23,40 +23,33 @@ import type { CheckboxProps, CheckboxGroupProps } from 'ant-design-vue/es/checkb
 import type { DatePickerProps } from 'ant-design-vue/es/date-picker'
 import type { SwitchProps } from 'ant-design-vue/es/switch'
 // 导入样式
-import 'ant-design-vue/dist/antd.css'
+import './index.css'
 // 导入二次封装组件
 
-interface ComponentObject {
-  'z-button'?: ButtonProps
-  'z-input'?: InputProps
-  'z-input-number'?: InputNumberProps
-  'z-select'?: SelectProps
-  'z-select-option'?: OptionProps
-  'z-radio'?: RadioProps
-  'z-radio-group'?: RadioGroupProps
-  'z-checkbox'?: CheckboxProps
-  'z-checbbox-group'?: CheckboxGroupProps
-  'z-date-picker'?: DatePickerProps
-  'z-switch'?: SwitchProps
-}
+type ComponentNames =
+  'z-button' | 'z-input' | 'z-input-number' | 'z-select' | 'z-select-option' | 'z-radio' | 'z-radio-group' | 'z-checkbox' | 'z-checkbox-group' | 'z-date-picker' | 'z-switch'
+
+type ComponentObject = Partial<Record<ComponentNames, PropType<ButtonProps | InputProps | InputNumberProps | SelectProps | OptionProps | RadioProps | RadioGroupProps | CheckboxProps | CheckboxGroupProps | DatePickerProps | SwitchProps>>>
 
 const components: ComponentObject = {
   // 存放组件
-  'z-button': Button as ButtonProps,
-  'z-input': Input as InputProps,
-  'z-input-number': InputNumber as InputNumberProps,
-  'z-select': Select as SelectProps,
-  'z-select-option': SelectOption as OptionProps,
-  'z-radio': Radio as RadioProps,
-  'z-radio-group': RadioGroup as RadioGroupProps,
-  'z-checkbox': Checkbox as CheckboxProps,
-  'z-checbbox-group': CheckboxGroup as CheckboxGroupProps,
-  'z-date-picker': DatePicker as DatePickerProps,
-  'z-switch': Switch as SwitchProps
+  'z-button': Button,
+  'z-input': Input,
+  'z-input-number': InputNumber,
+  'z-select': Select,
+  'z-select-option': SelectOption,
+  'z-radio': Radio,
+  'z-radio-group': RadioGroup,
+  'z-checkbox': Checkbox,
+  'z-checkbox-group': CheckboxGroup,
+  'z-date-picker': DatePicker,
+  'z-switch': Switch
 }
 
+const componentMap: ComponentObject = {}
+
 export default {
-  install(app: App, componentMap: ComponentObject, registerComponents?: string[]) {
+  install(app: App, registerComponents?: ComponentNames[]) {
     if (registerComponents) {
       // 指定注册
       registerComponents.forEach((name) => {
@@ -68,9 +61,10 @@ export default {
     } else {
       // 全量注册
       Object.entries(components).forEach(([name, component]) => {
-        componentMap[name] = components[name]
+        componentMap[name as keyof ComponentObject] = component
         app.component(name, component);
       })
     }
+    app.config.globalProperties.$componentMap = componentMap
   }
 }

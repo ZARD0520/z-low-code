@@ -2,8 +2,9 @@
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <z-button>傻狗古</z-button>
+  </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
