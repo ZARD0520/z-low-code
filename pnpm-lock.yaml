@@ -166,6 +166,25 @@ importers:
         specifier: ^2.4.6
         version: 2.4.6
 
+  packages/renderer:
+    dependencies:
+      vue:
+        specifier: ^3.5.12
+        version: 3.5.12(typescript@5.6.3)
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^5.1.4
+        version: 5.1.5(vite@5.4.10(@types/node@22.9.0)(sass@1.80.6)(terser@5.36.0))(vue@3.5.12(typescript@5.6.3))
+      typescript:
+        specifier: ~5.6.2
+        version: 5.6.3
+      vite:
+        specifier: ^5.4.10
+        version: 5.4.10(@types/node@22.9.0)(sass@1.80.6)(terser@5.36.0)
+      vue-tsc:
+        specifier: ^2.1.8
+        version: 2.1.10(typescript@5.6.3)
+
   packages/renderer/react:
     dependencies:
       react:
