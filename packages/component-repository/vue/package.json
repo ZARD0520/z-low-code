@@ -9,7 +9,13 @@
     "build": "rollup -c",
     "test": "jest"
   },
-  "main": "./dist/component.js",
+  "main": "dist/index-es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index-es.js",
+      "require": "./dist/index-cjs.js"
+    }
+  },
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"

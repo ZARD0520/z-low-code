@@ -7,7 +7,7 @@ import Test from './components/test/index.vue'
 type ComponentNames = 'z-test'
 
 type ComponentObject = {
-  [key in ComponentNames]?: any
+  [key in ComponentNames]?: DefineComponent<{}, {}, any>
 }
 
 const components: ComponentObject = {
