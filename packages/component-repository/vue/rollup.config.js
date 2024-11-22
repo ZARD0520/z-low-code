@@ -13,6 +13,7 @@ const config = {
       name: 'z-vue-component',
       sourcemap: true,
       globals: {
+        'vue': 'Vue',
         'ant-design-vue': 'AntDesignVue'
       }
     },
@@ -21,6 +22,7 @@ const config = {
       format: 'es',
       sourcemap: true,
       globals: {
+        'vue': 'Vue',
         'ant-design-vue': 'AntDesignVue'
       }
     },
@@ -29,11 +31,12 @@ const config = {
       format: 'cjs',
       sourcemap: true,
       globals: {
+        'vue': 'Vue',
         'ant-design-vue': 'AntDesignVue'
       }
     }
   ],
-  external: ['ant-design-vue'],
+  external: ['ant-design-vue', 'vue'],
   plugins: [
     vue({
       compileTemplate: true
