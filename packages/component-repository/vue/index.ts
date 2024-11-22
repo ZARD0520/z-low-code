@@ -1,4 +1,4 @@
-import { createApp, App, PropType, DefineComponent } from 'vue'
+import { App, DefineComponent } from 'vue'
 // 导入样式
 import './index.css'
 // 导入二次封装组件
