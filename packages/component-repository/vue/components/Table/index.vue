@@ -13,7 +13,7 @@
       <!-- body config -->
       <template #bodyCell="{ column,record}">
         <template v-if="$slots[`${column.prop}Body`]">
-          <slot :name="`${column.prop}Header`" :data="{ column, record }"></slot>
+          <slot :name="`${column.prop}Body`" :data="{ column, record }"></slot>
         </template>
         <span v-else>{{ record }}</span>
       </template>
