@@ -1,19 +1,8 @@
-import { App, DefineComponent } from 'vue'
+import { App } from 'vue'
+import { ComponentNames, ComponentObject } from '@/type'
+import { components } from './components'
 // 导入样式
 import './index.css'
-// 导入二次封装组件
-import Test from './components/test/index.vue'
-
-type ComponentNames = 'z-test'
-
-type ComponentObject = {
-  [key in ComponentNames]?: DefineComponent<{}, {}, any>
-}
-
-const components: ComponentObject = {
-  // 存放组件
-  'z-test': Test
-}
 
 const componentMap: ComponentObject = {}
 
