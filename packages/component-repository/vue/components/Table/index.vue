@@ -1,21 +1,31 @@
 <template>
   <div>
-    <ant-table ref="tableRef" v-bind="$attrs" :data="columnsData" :columns="columnsProps">
-      <!-- header config -->
-      <template #headerCell="{ title, column }">
-        <template v-if="$slots[`${column.prop}Header`]">
-          <slot :name="`${column.prop}Header`" :data="column"></slot>
-        </template>
-        <template v-else #headerCell>
-          {{ title }}
-        </template>
+    <ant-table ref="tableRef" v-bind="$attrs" :data-source="data" :columns="columnsProps" :loading="loading"
+      :pagination="pagination" @change="handleTableChange">
+      <!-- slot config -->
+      <template v-for="slot in tableSlots" v-slot:[slot.name]="data" :key="slot.name">
+        <slot :name="slot.name" :data="data"></slot>
       </template>
-      <!-- body config -->
-      <template #bodyCell="{ column,record}">
-        <template v-if="$slots[`${column.prop}Body`]">
-          <slot :name="`${column.prop}Body`" :data="{ column, record }"></slot>
+      <!-- slot(bodyCell) config -->
+      <template #bodyCell="data">
+        <!-- operation column config -->
+        <template v-if="data.column.dataIndex === 'operation'">
+          <template v-for="(item, index) in columnOptions" :key="index">
+            <template v-if="!item?.hidden(data)">
+              <!-- type is button -->
+              <el-button v-if="item.type === 'button'" :disabled="item?.disabled && item.disabled(data)"
+                v-bind="item.attrs" @click="item.action && item.action(data)">
+                {{ typeof item.label === 'function' ? item.label(data) : item.label }}
+              </el-button>
+              <!-- type is slot -->
+              <slot v-else-if="item.type === 'slot'" :name="`bodyCell-operation-${index}`" :data="data"></slot>
+              <!-- type is other -->
+            </template>
+          </template>
         </template>
-        <span v-else>{{ record }}</span>
+        <template v-else>
+          <slot name="bodyCell" :data="data"></slot>
+        </template>
       </template>
     </ant-table>
   </div>
@@ -24,8 +34,14 @@
 <script lang="ts">
 import { cloneDeep, omit } from 'lodash'
 import { Table } from 'ant-design-vue'
-import { ColumnsType, ColumnType } from 'ant-design-vue/es/table'
-import { ref, defineComponent, PropType, watchEffect, watch, nextTick } from 'vue'
+import { ColumnType, TablePaginationConfig, TableProps } from 'ant-design-vue/es/table'
+import { ref, defineComponent, PropType, toRefs, reactive, computed } from 'vue'
+import { usePagination } from '@/hooks/usePagination'
+import { apiType, columnOptionType } from '@/type'
+
+interface tableState {
+  columnsProps: ColumnType[]
+}
 
 export default defineComponent({
   name: 'z-table',
@@ -34,43 +50,80 @@ export default defineComponent({
   },
   props: {
     columns: {
-      type: Array as PropType<ColumnsType>,
+      type: Array as PropType<ColumnType[]>,
       default: () => []
     },
-    data: {
-      type: Array as PropType<any>,
+    api: {
+      type: Object as PropType<apiType>,
+      required: true
+    },
+    columnOptions: {
+      type: Array as PropType<columnOptionType[]>,
       default: () => []
     }
   },
   setup(props, { slots, expose }) {
     const tableRef = ref()
-    const columnsProps = ref<ColumnType[]>([])
-    const columnsData = ref<ColumnType[]>(cloneDeep(props.columns) ?? [])
 
-    // 外部列数据联动内部
-    watchEffect(() => {
-      columnsProps.value = cloneDeep(props.columns) ?? []
+    const state = reactive<tableState>({
+      columnsProps: cloneDeep(props.columns) ?? []
     })
 
-    // 数据刷新后，更新用户勾选的数据内容
-    watch(() => props.data, () => {
-      nextTick(() => {
-        if (tableRef.value) {
-          const selectionRows = tableRef.value.getSelectionRows() || []
-          if (selectionRows.length > 0) {
-            selectionRows.map((item: any) => {
-              tableRef.value.toggleRowSelection(item, true)
-            })
-            tableRef.value.$emit('selection-change', [...selectionRows])
-          }
-        }
+    // 分页hooks
+    const { current, pageSize, total, data, loading, filters, sorter, actionFn } = usePagination({
+      api: props.api
+    })
+
+    // 根据分页hooks的数据生成分页对象
+    const pagination = computed(() => ({
+      total,
+      current,
+      pageSize,
+    }))
+
+    // table的change事件
+    const handleTableChange: TableProps['onChange'] = (tablePagination: TablePaginationConfig,
+      filters: any,
+      sorter: any,
+      extra: any) => {
+      if (!tablePagination.current || !tablePagination.pageSize) {
+        console.error('can not find current or pageSize')
+        return
+      }
+      actionFn({
+        current: tablePagination.current,
+        pageSize: tablePagination.pageSize,
+        filters,
+        sorter
       })
+    }
+
+    // table的Slots
+    const tableSlots = computed(() => {
+      // 将 $slots 对象转换为数组，并过滤出具名插槽
+      return Object.keys(slots)
+        .filter(name => slots[name] && name !== 'bodyCell')
+        .map(name => ({ name, slot: slots[name] }))
+    })
+
+    // 列表请求
+    const getList = async () => {
+      await actionFn({ current, pageSize, filters, sorter })
+    }
+
+    // 向外暴露方法
+    expose({
+      getList
     })
 
     return {
+      ...toRefs(state),
+      handleTableChange,
+      tableSlots,
       tableRef,
-      columnsProps,
-      columnsData
+      pagination,
+      data,
+      loading
     }
   }
 })

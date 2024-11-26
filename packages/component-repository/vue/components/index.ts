@@ -3,7 +3,7 @@ import { Button, Input, Radio, RadioGroup, Checkbox, CheckboxGroup, Image, Selec
 // 导入二次封装组件
 import Test from './Test/index.vue'
 // 导入类型
-import { ComponentObject } from './type'
+import { ComponentObject } from '@/type'
 
 // 管理组件
 export const components: ComponentObject = {
