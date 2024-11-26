@@ -1,5 +1,6 @@
 @import 'ant-design-vue/dist/antd.css';
 
-.aaa {
-  background: blue;
+.middle-block {
+  padding-bottom: 20px;
+  opacity: 1;
 }
