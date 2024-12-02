@@ -2,7 +2,8 @@ import { App } from 'vue'
 import { ComponentNames, ComponentObject } from '@/type'
 import { components } from '@/components'
 // 导入样式
-import '@/index.css'
+import './index.css'
+import 'element-plus/dist/index.css'
 
 const componentMap: ComponentObject = {}
 

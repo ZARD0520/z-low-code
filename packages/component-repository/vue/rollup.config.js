@@ -14,7 +14,7 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'ant-design-vue': 'AntDesignVue'
+        'element-plus': 'elementPlus'
       }
     },
     {
@@ -23,7 +23,7 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'ant-design-vue': 'AntDesignVue'
+        'element-plus': 'elementPlus'
       }
     },
     {
@@ -32,14 +32,18 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'ant-design-vue': 'AntDesignVue'
+        'element-plus': 'elementPlus'
       }
     }
   ],
-  external: ['ant-design-vue', 'vue'],
+  external: ['vue', 'element-plus', 'element-plus/dist/index.css'],
   plugins: [
     vue({
       compileTemplate: true
+    }),
+    postcss({
+      extract: 'css/index.css',
+      minimize: true
     }),
     typescript({
       tsconfig: './tsconfig.json',
@@ -48,9 +52,6 @@ const config = {
     }),
     babel({
       exclude: 'node_modules/**' // 排除 node_modules
-    }),
-    postcss({
-      extract: 'css/index.css'
     }),
     terser()
   ]

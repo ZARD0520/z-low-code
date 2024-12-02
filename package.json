@@ -70,8 +70,6 @@
   },
   "dependencies": {
     "@types/lodash": "^4.17.13",
-    "ant-design-vue": "^4.2.5",
-    "antd": "^5.21.6",
     "lodash": "^4.17.21"
   }
 }

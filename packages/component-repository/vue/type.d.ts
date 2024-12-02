@@ -1,13 +1,13 @@
-import { ButtonProps, CheckboxGroupProps, CheckboxProps, InputNumberProps, InputProps, RadioGroupProps, RadioProps, SwitchProps } from 'ant-design-vue'
-import { SelectProps, OptionProps } from 'ant-design-vue/es/select'
-import { DefineComponent } from 'vue'
+import { DefineComponent, PropType } from 'vue'
+
+import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps,checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
 // 支持的组件名
-export type ComponentNames = 'z-test' | 'button' | 'input' | 'radio' | 'radio-group' | 'checkbox' | 'checkbox-group' | 'image' | 'select' | 'select-option' | 'switch' | 'input-number'
+export type ComponentNames = 'z-test' | 'z-button' | 'z-input' | 'z-radio' | 'z-radio-group' | 'z-checkbox' | 'z-checkbox-group' | 'z-image' | 'z-select' | 'z-select-option' | 'z-switch' | 'z-input-number'
 
 // 支持的组件
 export type ComponentObject = {
-  [key in ComponentNames]?: DefineComponent<{}, {}, any> | PropType<ButtonProps | InputProps | RadioProps | RadioGroupProps | CheckboxProps | CheckboxGroupProps | ImageProps | SelectProps | OptionProps | SwitchProps | InputNumberProps>
+  [key in ComponentNames]?: DefineComponent<{}, {}, any> | PropType<ButtonProps | InputProps | RadioProps | RadioGroupProps | CheckboxProps | checkboxGroupProps | ImageProps | SwitchProps | InputNumberProps>
 }
 
 

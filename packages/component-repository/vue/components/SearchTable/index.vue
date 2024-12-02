@@ -1,32 +1,29 @@
 <template>
   <!-- 筛选区 -->
-  <ant-card v-if="searchForm.columns?.length">
+  <div v-if="searchForm.columns?.length">
     <!-- 表单组件 -->
-  </ant-card>
+  </div>
   <div class="middle-block"></div>
   <!-- 图表区 -->
-  <ant-card v-if="searchCharts.columns?.length">
+  <div v-if="searchCharts.columns?.length">
     <!-- 图表组件 -->
-  </ant-card>
+  </div>
   <div class="middle-block"></div>
   <!-- 表格区 -->
-  <ant-card v-if="searchTable">
-    <ant-row align="middle">
+  <div v-if="searchTable">
+    <div align="middle">
       <!-- 操作行 -->
-    </ant-row>
+    </div>
     <!-- 表格组件 -->
-  </ant-card>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { Card, Row } from 'ant-design-vue';
 
 export default defineComponent({
   name: 'z-search-table',
   components: {
-    'ant-card': Card,
-    'ant-row': Row
   },
   props: {
     searchForm: {

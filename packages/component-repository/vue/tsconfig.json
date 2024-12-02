@@ -12,13 +12,26 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitHelpers": true,
-    "lib": ["esnext", "dom"],
-    "types": ["node"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["components/**/*", "hooks/**/*", "./*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "components/**/*",
+    "hooks/**/*",
+    "./*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

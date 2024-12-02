@@ -1,5 +1,5 @@
 // 导入基础组件
-import { Button, Input, Radio, RadioGroup, Checkbox, CheckboxGroup, Image, Select, SelectOption, Switch, InputNumber } from 'ant-design-vue'
+import { ElButton, ElInput, ElRadio, ElRadioGroup, ElCheckbox, ElCheckboxGroup, ElImage, ElSelect, ElOption, ElSwitch, ElInputNumber } from 'element-plus'
 // 导入二次封装组件
 import Test from './Test/index.vue'
 // 导入类型
@@ -7,16 +7,16 @@ import { ComponentObject } from '@/type'
 
 // 管理组件
 export const components: ComponentObject = {
-  'button': Button,
-  'input': Input,
-  'radio': Radio,
-  'radio-group': RadioGroup,
-  'checkbox': Checkbox,
-  'checkbox-group': CheckboxGroup,
-  'image': Image,
-  'select': Select,
-  'select-option': SelectOption,
-  'switch': Switch,
-  'input-number': InputNumber,
+  'z-button': ElButton,
+  'z-input': ElInput,
+  'z-radio': ElRadio,
+  'z-radio-group': ElRadioGroup,
+  'z-checkbox': ElCheckbox,
+  'z-checkbox-group': ElCheckboxGroup,
+  'z-image': ElImage,
+  'z-select': ElSelect,
+  'z-select-option': ElOption,
+  'z-switch': ElSwitch,
+  'z-input-number': ElInputNumber,
   'z-test': Test
 }

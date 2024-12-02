@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ant-table ref="tableRef" v-bind="$attrs" :data-source="data" :columns="columnsProps" :loading="loading"
+    <el-table ref="tableRef" v-bind="$attrs" :data-source="data" :columns="columnsProps" :loading="loading"
       :pagination="pagination" @change="handleTableChange">
       <!-- slot config -->
       <template v-for="slot in tableSlots" v-slot:[slot.name]="data" :key="slot.name">
@@ -13,7 +13,7 @@
           <template v-for="(item, index) in columnOptions" :key="index">
             <template v-if="!item?.hidden(data)">
               <!-- type is button -->
-              <el-button v-if="item.type === 'button'" :disabled="item?.disabled && item.disabled(data)"
+              <el-button v-if="item.type === 'z-button'" :disabled="item?.disabled && item.disabled(data)"
                 v-bind="item.attrs" @click="item.action && item.action(data)">
                 {{ typeof item.label === 'function' ? item.label(data) : item.label }}
               </el-button>
@@ -27,30 +27,27 @@
           <slot name="bodyCell" :data="data"></slot>
         </template>
       </template>
-    </ant-table>
+    </el-table>
   </div>
 </template>
 
 <script lang="ts">
 import { cloneDeep, omit } from 'lodash'
-import { Table } from 'ant-design-vue'
-import { ColumnType, TablePaginationConfig, TableProps } from 'ant-design-vue/es/table'
 import { ref, defineComponent, PropType, toRefs, reactive, computed } from 'vue'
 import { usePagination } from '@/hooks/usePagination'
 import { apiType, columnOptionType } from '@/type'
 
 interface tableState {
-  columnsProps: ColumnType[]
+  columnsProps: any[]
 }
 
 export default defineComponent({
   name: 'z-table',
   components: {
-    'ant-table': Table
   },
   props: {
     columns: {
-      type: Array as PropType<ColumnType[]>,
+      type: Array as PropType<any[]>,
       default: () => []
     },
     api: {
@@ -82,7 +79,7 @@ export default defineComponent({
     }))
 
     // table的change事件
-    const handleTableChange: TableProps['onChange'] = (tablePagination: TablePaginationConfig,
+    const handleTableChange: any = (tablePagination: any,
       filters: any,
       sorter: any,
       extra: any) => {
