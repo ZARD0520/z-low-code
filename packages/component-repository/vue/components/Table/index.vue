@@ -139,7 +139,7 @@ export default defineComponent({
   props: {
     // col config
     columns: {
-      type: Array as PropType<any[]>,
+      type: Array as PropType<typeof ElTableColumn[]>,
       default: () => []
     },
     // table list api
@@ -155,7 +155,7 @@ export default defineComponent({
     // col is selectable ?
     selectable: {
       type: Function as PropType<(row: any, index: number) => boolean>,
-      default: (row: any, index: any) => false
+      default: (row: any, index: number) => false
     }
   },
   setup(props, { slots, expose }) {
@@ -165,19 +165,19 @@ export default defineComponent({
       columnsProps: cloneDeep(props.columns) ?? []
     })
 
-    // 分页hooks
+    // pagination hooks
     const { current, size, total, data, loading, actionFn } = usePagination({
       api: props.api
     })
 
-    // 根据分页hooks的数据生成分页对象
+    // pagination data
     const pagination = computed(() => ({
       total,
       current,
       size,
     }))
 
-    // table的change事件
+    // table的change event
     const handlePageChange: Function = (info: PageInfoType) => {
       if (!info.current || !info.size) {
         console.error('can not find current or pageSize')
@@ -189,12 +189,12 @@ export default defineComponent({
       })
     }
 
-    // 列表请求
+    // list request
     const getList = async () => {
       await actionFn({ current, size })
     }
 
-    // 向外暴露方法
+    // expose method
     expose({
       getList
     })

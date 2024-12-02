@@ -12,6 +12,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitHelpers": true,
+    "noImplicitAny": false,
     "lib": [
       "esnext",
       "dom"
