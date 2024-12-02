@@ -2,6 +2,8 @@ import { DefineComponent, PropType } from 'vue'
 
 import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps,checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
+/* Form相关 */
+
 // 支持的组件名
 export type ComponentNames = 'z-test' | 'z-button' | 'z-input' | 'z-radio' | 'z-radio-group' | 'z-checkbox' | 'z-checkbox-group' | 'z-image' | 'z-select' | 'z-select-option' | 'z-switch' | 'z-input-number'
 
@@ -21,16 +23,15 @@ export interface PaginationParamsType {
 // 分页执行器类型
 export interface PaginationActionType {
   current: number
-  pageSize: number
-  filters: Object,
-  sorter: Object
+  size: number
 }
 
 // 分页类型
 export interface PageInfoType {
   total: number // 总条目数
-  pageSize: number // 每页显示条目个数
+  size: number // 每页显示条目个数
   current: number // 当前页
+  count?: number // 总页数
 }
 
 // 分页api类型
