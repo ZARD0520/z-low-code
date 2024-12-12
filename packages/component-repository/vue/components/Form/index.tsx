@@ -1,4 +1,4 @@
-import { FormColumn, FormColumnChild } from "@/type";
+import { ComponentNames, FormColumn, FormColumnChild } from "@/type";
 import { ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, useAttrs } from "vue";
 import { ElForm, ElFormItem } from "element-plus";
 import { components } from "../index";
@@ -49,7 +49,7 @@ export default defineComponent({
       return {}
     }
 
-    const getChildItemAttr = (child: any) => {
+    const getChildItemAttr = (child: any, childTag: any) => {
       if (!child) {
         return {}
       }
@@ -60,6 +60,12 @@ export default defineComponent({
           result[key] = child[key]
         }
       })
+
+      // 对单选、多选进行单独处理(如后续升级到element3.0+，就不需要这个操作)
+      if (['ElRadio', 'ElCheckbox'].includes(childTag.name)) {
+        result.label = result.value
+        result.value = undefined
+      }
       return result
     }
 
@@ -94,9 +100,13 @@ export default defineComponent({
       const fn = column.attrs && column.attrs['remote-method']
       if (fn) {
         columnAttrs['remote-method'] = async (query: string) => {
-          const res = await fn(query)
-          if (res && column.children) {
-            column.children.options = res
+          try {
+            const res = await fn(query)
+            if (res && column.children) {
+              column.children.options = res
+            }
+          } catch (e) {
+            console.error(e)
           }
         }
       }
@@ -130,6 +140,82 @@ export default defineComponent({
       formRef?.value?.resetFields()
     }
 
+    const hasModel = (component) => {
+      // 检查组件是否有 model 选项，并且值为 true
+      return component.props && component.props.model !== undefined;
+    }
+
+    // 组件渲染
+    const renderComponent = (column: FormColumn) => {
+      let children
+      const tag: any = components[column.type]
+      const columnAttrs = { ...getTagAttr(column.attrs) }
+      handleRemote(column, columnAttrs)
+      handleDisabled(columnAttrs)
+
+      // 是否支持v-model
+      const isModelSupported = hasModel(tag)
+
+      if (!isModelSupported) {
+        return <tag {...columnAttrs} key={column.prop}></tag>
+      }
+
+      if (showChild(column)) {
+        if (!column.children?.type) {
+          return
+        }
+        const childTag = components[column.children?.type]
+        children = column.children?.options?.map((child: any) => {
+          const childAttrs = bindChildAttr(column, child)
+          const childSlot = slots[child.slot]
+          return <childTag {...getChildItemAttr({ ...childAttrs, ...child }, childTag)}>{
+            child.slot && childSlot instanceof Function ? childSlot() : (childAttrs.text || child.label || '')
+          }</childTag>
+        })
+      }
+      return <tag {...columnAttrs} v-model={attrs.model[column.prop]} key={column.prop} onChange={column?.attrs?.changeAction} onUpdate={column?.attrs?.updateAction}>{children}</tag>
+    }
+
+    // 表单项渲染
+    const renderFormItem = (column: FormColumn) => {
+      // 处理隐藏
+      if (handleHidden(column.hidden)) {
+        return
+      }
+      // 处理 插槽/表单项插槽/表单项组件/普通组件/布局等
+      if (column.columnType === 'slot' && column.parentSlot) {
+        // 处理插槽
+        const slot = slots[column.parentSlot]
+        return slot instanceof Function ? slot({ row: attrs.model, column }) : ''
+      } else if (column.columnType === 'layout') {
+        // 处理布局
+        const layout = components[column.type]
+        const columnAttrs = { ...getTagAttr(column.attrs) }
+        // 此处还要再判断是什么布局
+        return <layout {...columnAttrs} key={column.prop}>
+          {column.children?.options?.map((childColumn) => {
+            return renderFormItem(childColumn)
+          })}
+        </layout>
+      } else if (column.columnType === 'component') {
+        // 处理普通组件
+        return renderComponent(column)
+      } else if (column.columnType === 'form-item') {
+        // 处理表单项
+        let component
+        if (column.slot) {
+          const slot = slots[column.slot]
+          component = slot instanceof Function ? slot({ row: attrs.model, column }) : ''
+        } else if (column.type) {
+          component = renderComponent(column)
+        }
+        return <ElFormItem {...getFormItemAttr(column)} key={column.prop}> {component} </ElFormItem>
+      } else {
+        // ...
+        return ''
+      }
+    }
+
     onMounted(() => {
       checkDataInit()
     })
@@ -142,42 +228,7 @@ export default defineComponent({
     return () => {
       return <ElForm ref="formRef" {...attrs}>
         {vFormColumns.value.map((column: FormColumn) => {
-          // handle with hidden
-          if (handleHidden(column.hidden)) {
-            return
-          }
-          // handle with parentSlot/slot/component
-          if (column.parentSlot) {
-            const slot = slots[column.parentSlot]
-            return slot instanceof Function ? slot({ row: attrs.model, column }) : ''
-          } else {
-            let component, children
-            if (column.slot) {
-              const slot = slots[column.slot]
-              component = slot instanceof Function ? slot({ row: attrs.model, column }) : ''
-            } else if (column.type) {
-              const tag = components[column.type]
-              const columnAttrs = { ...getTagAttr(column.attrs) }
-              handleRemote(column, columnAttrs)
-              handleDisabled(columnAttrs)
-
-              if (showChild(column)) {
-                if (!column.children?.type) {
-                  return
-                }
-                const childTag = components[column.children?.type]
-                children = column.children?.options?.map((child: any) => {
-                  const childAttrs = bindChildAttr(column, child)
-                  const childSlot = slots[child.slot]
-                  return <childTag {...getChildItemAttr({ ...childAttrs, ...child })}>{
-                    child.slot && childSlot instanceof Function ? childSlot() : (childAttrs.text || child.label || '')
-                  }</childTag>
-                })
-              }
-              component = <tag {...columnAttrs} v-model={attrs.model[column.prop]} onChange={column?.attrs?.changeAction} onUpdate={column?.attrs?.updateAction}>{children}</tag>
-            }
-            return <ElFormItem {...getFormItemAttr(column)} key={column.prop}> {component} </ElFormItem>
-          }
+          return renderFormItem(column)
         })}
       </ElForm>
     }

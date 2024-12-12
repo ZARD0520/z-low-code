@@ -1,6 +1,6 @@
 import { DefineComponent, PropType } from 'vue'
 
-import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps,checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
+import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
 /* Form相关 */
 
@@ -21,7 +21,8 @@ export interface FormColumnChild {
 export interface FormColumn {
   prop: string
   label: string
-  type?: ComponentNames
+  columnType: 'form-item' | 'layout' | 'component' | 'slot'
+  type: ComponentNames
   parentSlot?: string
   slot?: string
   options?: Array<{ label: string, value: any }> // 仅用于 select 类型
