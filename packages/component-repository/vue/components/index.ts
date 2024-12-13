@@ -1,7 +1,22 @@
 // 导入基础组件
-import { ElButton, ElInput, ElRadio, ElRadioGroup, ElCheckbox, ElCheckboxGroup, ElImage, ElSelect, ElOption, ElSwitch, ElInputNumber } from 'element-plus'
+import {
+  ElButton,
+  ElInput,
+  ElRadio,
+  ElRadioGroup,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElImage,
+  ElSelect,
+  ElOption,
+  ElSwitch,
+  ElInputNumber,
+  ElRow,
+  ElCol
+} from 'element-plus'
 // 导入二次封装组件
 import Test from './Test/index.vue'
+import Flex from './Layout/Flex/index.vue'
 // 导入类型
 import { ComponentObject } from '@/type'
 
@@ -18,5 +33,8 @@ export const components: ComponentObject = {
   'z-select-option': ElOption,
   'z-switch': ElSwitch,
   'z-input-number': ElInputNumber,
-  'z-test': Test
+  'z-row': ElRow,
+  'z-col': ElCol,
+  'z-flex': Flex,
+  'z-test': Test,
 }

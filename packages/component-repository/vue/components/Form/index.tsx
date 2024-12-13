@@ -115,7 +115,7 @@ export default defineComponent({
     const handleDisabled = (columnAttrs: any) => {
       const disabled = columnAttrs.disabled
       if (typeof disabled === 'function') {
-        columnAttrs.disabled = disabled()
+        columnAttrs.disabled = disabled(attrs.model)
       }
     }
 
@@ -191,12 +191,30 @@ export default defineComponent({
         // 处理布局
         const layout = components[column.type]
         const columnAttrs = { ...getTagAttr(column.attrs) }
-        // 此处还要再判断是什么布局
-        return <layout {...columnAttrs} key={column.prop}>
-          {column.children?.options?.map((childColumn) => {
-            return renderFormItem(childColumn)
-          })}
-        </layout>
+        // Row/Col-参数: 参考element-plus
+        // Flex-参数: direction、justifyContent、alignItems、flexWrap、...flex相关的其他样式参数
+        // Grid-参数: ...
+        if (['z-row', 'z-col', 'z-flex', 'z-grid'].includes(column.type)) {
+          return <layout {...columnAttrs} key={column.prop}>
+            {column.children?.options?.map((childColumn) => {
+              return renderFormItem(childColumn)
+            })}
+          </layout>
+        } else if (['z-tabs'].includes(column.type)) {
+          // Tab-参数: tabs[{ name, label}]、modelValue、其余参数参考element-plus...
+          // Tab-Pane参数: 参考element-plus
+          return <layout tabs={column.children?.options} {...columnAttrs} onUpdate={column?.attrs?.updateAction}>
+            {column.children?.options?.map((childTab)=>{
+              <template key={childTab.name} v-slot:default={childTab.name}>
+                <div>
+                  {childTab.children?.options?.map((childColumn)=>{
+                    return renderFormItem(childColumn)
+                  })}
+                </div>
+              </template>
+            })}
+          </layout>
+        }
       } else if (column.columnType === 'component') {
         // 处理普通组件
         return renderComponent(column)
