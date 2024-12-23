@@ -17,6 +17,9 @@ import {
 // 导入二次封装组件
 import Test from './Test/index.vue'
 import Flex from './Layout/Flex/index.vue'
+import Grid from './Layout/Grid/index.vue'
+import Tabs from './Layout/Tabs/index.vue'
+import Charts from './Charts/index.vue'
 // 导入类型
 import { ComponentObject } from '@/type'
 
@@ -36,5 +39,8 @@ export const components: ComponentObject = {
   'z-row': ElRow,
   'z-col': ElCol,
   'z-flex': Flex,
+  'z-grid': Grid,
+  'z-tabs': Tabs,
+  'z-charts': Charts,
   'z-test': Test,
 }
