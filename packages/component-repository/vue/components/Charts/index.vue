@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref, watch, nextTick } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref, watch, nextTick, PropType } from 'vue'
 import * as echarts from 'echarts'
 
 export default defineComponent({
   name: 'z-charts',
   props: {
     options: {
-      type: Object,
+      type: Object as PropType<echarts.EChartsOption>,
       default: () => ({}),
     },
     chartStyle: {
@@ -51,7 +51,7 @@ export default defineComponent({
       }
     });
 
-    watch(() => props.options, (newOptions) => {
+    watch(() => props.options, (newOptions: echarts.EChartsOption) => {
       if (chartInstance) {
         chartLoading.value = true
         nextTick(() => {
