@@ -1,4 +1,4 @@
-import { ComponentNames, FormColumn, FormColumnChild } from "@/type";
+import { FormColumn } from "@/type";
 import { ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, useAttrs } from "vue";
 import { ElForm, ElFormItem } from "element-plus";
 import { components } from "../index";
@@ -183,11 +183,11 @@ export default defineComponent({
         return
       }
       // 处理 插槽/表单项插槽/表单项组件/普通组件/布局等
-      if (column.columnType === 'slot' && column.parentSlot) {
+      if (column.columnType === 4 && column.parentSlot) {
         // 处理插槽
         const slot = slots[column.parentSlot]
         return slot instanceof Function ? slot({ row: attrs.model, column }) : ''
-      } else if (column.columnType === 'layout') {
+      } else if (column.columnType === 3) {
         // 处理布局
         const layout = components[column.type]
         const columnAttrs = { ...getTagAttr(column.attrs) }
@@ -215,10 +215,10 @@ export default defineComponent({
             })}
           </layout>
         }
-      } else if (column.columnType === 'component') {
+      } else if (column.columnType === 2) {
         // 处理普通组件
         return renderComponent(column)
-      } else if (column.columnType === 'form-item') {
+      } else if (column.columnType === 1) {
         // 处理表单项
         let component
         if (column.slot) {

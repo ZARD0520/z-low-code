@@ -1,12 +1,8 @@
 import { DefineComponent, PropType } from 'vue'
-
+import { ComponentNames } from '../common/type/formType'
 import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
 /* Form相关 */
-
-// 支持的组件名
-export type ComponentNames = 'z-test' | 'z-button' | 'z-input' | 'z-radio' | 'z-radio-group' | 'z-checkbox' | 'z-checkbox-group' | 'z-image' | 'z-select' | 'z-select-option' | 'z-switch' | 'z-input-number' | 'z-row' | 'z-col' | 'z-flex' | 'z-grid' | 'z-tabs' | 'z-charts'
-
 // 支持的组件
 export type ComponentObject = {
   [key in ComponentNames]?: DefineComponent<{}, {}, any> | PropType<ButtonProps | InputProps | RadioProps | RadioGroupProps | CheckboxProps | checkboxGroupProps | ImageProps | SwitchProps | InputNumberProps>
@@ -21,7 +17,7 @@ export interface FormColumnChild {
 export interface FormColumn {
   prop: string
   label: string
-  columnType: 'form-item' | 'layout' | 'component' | 'slot'
+  columnType: number
   type: ComponentNames
   parentSlot?: string
   slot?: string
