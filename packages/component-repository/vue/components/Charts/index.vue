@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartRef" :style="chartStyle"></div>
+  <div ref="chartRef" :style="chartStyle" v-loading="chartLoading"></div>
 </template>
 
 <script lang="ts">
@@ -21,12 +21,15 @@ export default defineComponent({
   },
   setup(props) {
     const chartRef = ref(null)
-    let chartInstance = null
+    const chartLoading = ref(false)
+    let chartInstance: echarts.ECharts
 
     const initChart = () => {
       if (chartRef.value !== null) {
+        chartLoading.value = true
         chartInstance = echarts.init(chartRef.value)
         chartInstance.setOption(props.options)
+        chartLoading.value = false
       }
     };
 
@@ -37,7 +40,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      initChart();
+      initChart()
       window.addEventListener('resize', resizeChart)
     });
 
@@ -48,13 +51,19 @@ export default defineComponent({
       }
     });
 
-    watch(() => props.options, () => {
-      nextTick(() => {
-        if (chartInstance) {
-          chartInstance.setOption(props.options)
-        }
-      });
+    watch(() => props.options, (newOptions) => {
+      if (chartInstance) {
+        chartLoading.value = true
+        nextTick(() => {
+          chartInstance.setOption(newOptions)
+          chartLoading.value = false
+        })
+      }
     })
+
+    return {
+      chartLoading
+    }
   }
 })
 </script>
