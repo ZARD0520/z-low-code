@@ -21,7 +21,7 @@ import Grid from './Layout/Grid/index.vue'
 import Tabs from './Layout/Tabs/index.vue'
 import Charts from './Charts/index.vue'
 // 导入类型
-import { ComponentObject } from '@/type'
+import { ComponentObject } from '@/type/form'
 
 // 管理组件
 export const components: ComponentObject = {

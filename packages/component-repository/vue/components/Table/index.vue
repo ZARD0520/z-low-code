@@ -121,7 +121,8 @@
 import { cloneDeep, omit } from 'lodash'
 import { ref, defineComponent, PropType, toRefs, reactive, computed } from 'vue'
 import { usePagination } from '@/hooks/usePagination'
-import { apiType, columnOptionType, PageInfoType } from '@/type'
+import { columnOptionType } from '@/type/table'
+import { PageInfoType, apiType } from '@/type/pagination'
 import { ElTable, ElTableColumn } from 'element-plus'
 import Pagination from '@/Pagination/index.vue'
 

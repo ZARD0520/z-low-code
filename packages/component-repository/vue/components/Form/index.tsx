@@ -1,4 +1,4 @@
-import { FormColumn } from "@/type";
+import { FormColumn } from "@/type/form";
 import { ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, useAttrs } from "vue";
 import { ElForm, ElFormItem } from "element-plus";
 import { components } from "../index";

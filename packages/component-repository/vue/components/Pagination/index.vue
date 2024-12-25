@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { PageInfoType } from '@/type';
+import { PageInfoType } from '@/type/pagination';
 import { defineComponent, PropType, ref } from 'vue';
 
 export default defineComponent({
