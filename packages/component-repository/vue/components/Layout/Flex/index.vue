@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container" :style="flexStyles">
+  <div class="flex-container" :style="styles">
     <slot></slot>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default defineComponent({
     }
   },
   setup(props, { attrs }) {
-    const flexStyles = computed(() => {
+    const styles: any = computed(() => {
       return {
         flexDirection: props.direction,
         justifyContent: props.justifyContent,
@@ -38,7 +38,7 @@ export default defineComponent({
       }
     })
     return {
-      flexStyles
+      styles
     }
   }
 })
