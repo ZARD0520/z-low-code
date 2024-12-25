@@ -1,27 +1,29 @@
+import { ActionEvent } from '../../common/type/common'
 import { DefineComponent, PropType } from 'vue'
-import { ComponentNames } from '../common/type/formType'
 import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
 // 支持的组件
 export type ComponentObject = {
-  [key in ComponentNames]?: DefineComponent<{}, {}, any> | PropType<ButtonProps | InputProps | RadioProps | RadioGroupProps | CheckboxProps | checkboxGroupProps | ImageProps | SwitchProps | InputNumberProps>
+  [number]?: DefineComponent<{}, {}, any> | PropType<ButtonProps | InputProps | RadioProps | RadioGroupProps | CheckboxProps | checkboxGroupProps | ImageProps | SwitchProps | InputNumberProps>
 }
 
 export interface FormColumnChild {
   options?: Array<any>
-  type?: ComponentNames
+  type?: number
   attrs?: Record<string, any>
+  actions?: Record<string, ActionEvent> // 事件相关
 }
 
 export interface FormColumn {
   prop: string
   label: string
   columnType: number
-  type: ComponentNames
+  type: number
   parentSlot?: string
   slot?: string
   options?: Array<{ label: string, value: any }> // 仅用于 select 类型
   attrs?: Record<string, any> // 额外的属性，如 placeholder、minlength 等
+  actions?: Record<string, ActionEvent> // 事件相关
   children?: FormColumnChild
   labelWidth?: string | number
   hidden?: boolean | Function

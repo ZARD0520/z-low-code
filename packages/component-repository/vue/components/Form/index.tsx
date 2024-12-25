@@ -89,15 +89,13 @@ export default defineComponent({
       }
       const result: any = {}
       Object.keys(attrs).forEach((key) => {
-        if (!['remote-method', 'updateAction', 'changeAction'].includes(key)) {
           result[key] = attrs[key]
-        }
       })
       return result
     }
 
     const handleRemote = (column: FormColumn, columnAttrs: any) => {
-      const fn = column.attrs && column.attrs['remote-method']
+      const fn = column.actions && column.actions['remote-method']
       if (fn) {
         columnAttrs['remote-method'] = async (query: string) => {
           try {
@@ -173,7 +171,7 @@ export default defineComponent({
           }</childTag>
         })
       }
-      return <tag {...columnAttrs} v-model={attrs.model[column.prop]} key={column.prop} onChange={column?.attrs?.changeAction} onUpdate={column?.attrs?.updateAction}>{children}</tag>
+      return <tag {...columnAttrs} v-model={attrs.model[column.prop]} key={column.prop} onChange={column?.actions?.changeAction} onUpdate={column?.actions?.updateAction}>{children}</tag>
     }
 
     // 表单项渲染
@@ -194,16 +192,16 @@ export default defineComponent({
         // Row/Col-参数: 参考element-plus
         // Flex-参数: direction、justifyContent、alignItems、flexWrap、...flex相关的其他样式参数
         // Grid-参数: ...
-        if (['z-row', 'z-col', 'z-flex', 'z-grid'].includes(column.type)) {
+        if ([11, 12, 13, 14].includes(column.type)) {
           return <layout {...columnAttrs} key={column.prop}>
             {column.children?.options?.map((childColumn) => {
               return renderFormItem(childColumn)
             })}
           </layout>
-        } else if (['z-tabs'].includes(column.type)) {
+        } else if ([15].includes(column.type)) {
           // Tab-参数: tabs[{ name, label}]、modelValue、其余参数参考element-plus...
           // Tab-Pane参数: 参考element-plus
-          return <layout tabs={column.children?.options} {...columnAttrs} onUpdate={column?.attrs?.updateAction}>
+          return <layout tabs={column.children?.options} {...columnAttrs} onUpdate={column?.actions?.updateAction}>
             {column.children?.options?.map((childTab)=>{
               <template key={childTab.name} v-slot:default={childTab.name}>
                 <div>

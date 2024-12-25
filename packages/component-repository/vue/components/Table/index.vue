@@ -16,7 +16,7 @@
               <template v-for="(item, index) in columnOptions" :key="index">
                 <template v-if="!item?.hidden(data)">
                   <!-- type is button -->
-                  <el-button v-if="item.type === 'z-button'" :disabled="item?.disabled && item.disabled(data)"
+                  <el-button v-if="item.type === 1" :disabled="item?.disabled && item.disabled(data)"
                     v-bind="item.attrs" @click="item.action && item.action(data)">
                     {{ typeof item.label === 'function' ? item.label(data) : item.label }}
                   </el-button>
@@ -61,7 +61,7 @@
                       <template v-for="(item, index) in columnOptions" :key="index">
                         <template v-if="!item?.hidden(data)">
                           <!-- type is button -->
-                          <el-button v-if="item.type === 'z-button'" :disabled="item?.disabled && item.disabled(data)"
+                          <el-button v-if="item.type === 1" :disabled="item?.disabled && item.disabled(data)"
                             v-bind="item.attrs" @click="item.action && item.action(data)">
                             {{ typeof item.label === 'function' ? item.label(data) : item.label }}
                           </el-button>
@@ -91,7 +91,7 @@
                   <template v-for="(item, index) in columnOptions" :key="index">
                     <template v-if="!item?.hidden(data)">
                       <!-- type is button -->
-                      <el-button v-if="item.type === 'z-button'" :disabled="item?.disabled && item.disabled(data)"
+                      <el-button v-if="item.type === 1" :disabled="item?.disabled && item.disabled(data)"
                         v-bind="item.attrs" @click="item.action && item.action(data)">
                         {{ typeof item.label === 'function' ? item.label(data) : item.label }}
                       </el-button>

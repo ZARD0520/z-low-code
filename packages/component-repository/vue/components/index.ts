@@ -20,27 +20,24 @@ import Flex from './Layout/Flex/index.vue'
 import Grid from './Layout/Grid/index.vue'
 import Tabs from './Layout/Tabs/index.vue'
 import Charts from './Charts/index.vue'
-// 导入类型
-import { ComponentObject } from '@/type/form'
 
 // 管理组件
-export const components: ComponentObject = {
-  'z-button': ElButton,
-  'z-input': ElInput,
-  'z-radio': ElRadio,
-  'z-radio-group': ElRadioGroup,
-  'z-checkbox': ElCheckbox,
-  'z-checkbox-group': ElCheckboxGroup,
-  'z-image': ElImage,
-  'z-select': ElSelect,
-  'z-select-option': ElOption,
-  'z-switch': ElSwitch,
-  'z-input-number': ElInputNumber,
-  'z-row': ElRow,
-  'z-col': ElCol,
-  'z-flex': Flex,
-  'z-grid': Grid,
-  'z-tabs': Tabs,
-  'z-charts': Charts,
-  'z-test': Test,
+export const components = {
+  1: ElButton,
+  2: ElInput,
+  3: ElRadio,
+  4: ElRadioGroup,
+  5: ElCheckbox,
+  6: ElCheckboxGroup,
+  7: ElSelect,
+  8: ElOption,
+  9: ElSwitch,
+  10: ElInputNumber,
+  11: ElRow,
+  12: ElCol,
+  13: Flex,
+  14: Grid,
+  15: Tabs,
+  16: Charts,
+  17: ElImage,
 }

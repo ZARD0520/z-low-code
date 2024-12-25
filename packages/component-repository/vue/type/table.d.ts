@@ -1,10 +1,12 @@
+import { ActionEvent } from '../../common/type/common'
+
 // 操作列
 export interface columnOptionType {
   label: string | Function
   hidden: Function
   disabled: Function
-  type: ComponentNames | 'slot'
+  type: number | 'slot'
   attrs: Object
-  action: Function
+  action: ActionEvent // 事件相关
   children?: Array
 }
