@@ -1,4 +1,4 @@
-import { ActionEvent } from '../../common/type/common'
+import { ActionEvent } from '../common'
 
 // 操作列
 export interface columnOptionType {

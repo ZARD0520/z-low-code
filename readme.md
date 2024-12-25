@@ -7,7 +7,7 @@ to do list
 * vue、react通用渲染组件
 * 后台组件编辑器
 * 远程渲染页
-* 其他善尾工作
+* 其他善尾&&优化工作
 
 <!-- 设计文档 -->
 https://z2431n96ps.feishu.cn/docx/DTFwd2r14opCECxmygfclkK5n1g

@@ -1,11 +1,11 @@
 <template>
-  <div class="grid-layout">
+  <div class="grid-layout" :styles="styles">
     <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, useAttrs } from 'vue'
+import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
   name: 'z-grid',
@@ -23,9 +23,7 @@ export default defineComponent({
       default: 10
     }
   },
-  setup(props) {
-    const attrs: any = useAttrs()
-    
+  setup(props, { attrs }) {
     const styles = computed(() => {
       return {
         gridTemplateColumns: props.gridColumns,

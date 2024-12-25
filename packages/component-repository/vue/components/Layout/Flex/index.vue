@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useAttrs } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'z-flex',
@@ -27,9 +27,7 @@ export default defineComponent({
       default: 'wrap'
     }
   },
-  setup(props) {
-    const attrs: any = useAttrs()
-    
+  setup(props, { attrs }) {
     const flexStyles = computed(() => {
       return {
         flexDirection: props.direction,

@@ -1,4 +1,4 @@
-import { PaginationActionType, PaginationParamsType } from "../type";
+import { PaginationActionType, PaginationParamsType } from "../type/pagination";
 import { reactive } from "vue";
 
 export function usePagination(params: PaginationParamsType) {

@@ -1,4 +1,4 @@
-import { ActionEvent } from '../../common/type/common'
+import { ActionEvent } from '../common'
 import { DefineComponent, PropType } from 'vue'
 import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 

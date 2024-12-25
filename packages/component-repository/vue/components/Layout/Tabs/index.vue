@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { ElTabs, ElTabPane } from 'element-plus'
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 
 export default defineComponent({
   name: 'z-tabs',
@@ -18,7 +18,7 @@ export default defineComponent({
       default: ''
     },
     tabs: {
-      type: Array<any>,
+      type: Array as PropType<any[]>,
       default: () => []
     }
   },
