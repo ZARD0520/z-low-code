@@ -18,7 +18,7 @@ export default defineComponent({
       default: ''
     },
     tabs: {
-      type: Array as PropType<any[]>,
+      type: Array as PropType<Array<any>>,
       default: () => []
     }
   },

@@ -1,7 +1,7 @@
 import vue from 'rollup-plugin-vue'
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
-import typescript from '@rollup/plugin-typescript'
+import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 
 const config = {
@@ -14,7 +14,8 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'element-plus': 'elementPlus'
+        'element-plus': 'elementPlus',
+        'echarts': 'echarts'
       }
     },
     {
@@ -23,7 +24,8 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'element-plus': 'elementPlus'
+        'element-plus': 'elementPlus',
+        'echarts': 'echarts'
       }
     },
     {
@@ -32,19 +34,13 @@ const config = {
       sourcemap: true,
       globals: {
         'vue': 'Vue',
-        'element-plus': 'elementPlus'
+        'element-plus': 'elementPlus',
+        'echarts': 'echarts'
       }
     }
   ],
-  external: ['vue', 'element-plus', 'element-plus/dist/index.css'],
+  external: ['vue', 'element-plus', 'element-plus/dist/index.css','echarts'],
   plugins: [
-    vue({
-      compileTemplate: true
-    }),
-    postcss({
-      extract: 'css/index.css',
-      minimize: true
-    }),
     typescript({
       tsconfig: './tsconfig.json',
       exclude: ['node_modules'],
@@ -52,6 +48,13 @@ const config = {
     }),
     babel({
       exclude: 'node_modules/**' // 排除 node_modules
+    }),
+    vue({
+      compileTemplate: true
+    }),
+    postcss({
+      extract: 'css/index.css',
+      minimize: true
     }),
     terser()
   ]
