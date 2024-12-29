@@ -3,8 +3,9 @@ import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
+import { dts } from 'rollup-plugin-dts'
 
-const config = {
+const config = [{
   input: './index.ts',
   output: [
     {
@@ -39,7 +40,7 @@ const config = {
       }
     }
   ],
-  external: ['vue', 'element-plus', 'element-plus/dist/index.css','echarts'],
+  external: ['vue', 'element-plus', 'element-plus/dist/index.css', 'echarts'],
   plugins: [
     typescript({
       tsconfig: './tsconfig.json',
@@ -58,6 +59,14 @@ const config = {
     }),
     terser()
   ]
-}
+},
+{
+  input:'./type/index.d.ts',
+  plugins: [dts()],
+  output: {
+    format: 'esm',
+    file: 'dist/type/index.d.ts',
+  }
+}]
 
 export default config

@@ -71,6 +71,7 @@
   "dependencies": {
     "@types/lodash": "^4.17.13",
     "echarts": "^5.5.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "rollup-plugin-dts": "^6.1.1"
   }
 }

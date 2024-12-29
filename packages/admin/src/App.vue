@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <z-test></z-test>
+    <z-button>6</z-button>
   </div>
 </template>
 

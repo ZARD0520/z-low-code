@@ -1,6 +1,6 @@
-import { ActionEvent } from '../common'
+import type { ActionEvent } from './common'
 import { DefineComponent, PropType } from 'vue'
-import { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
+import type { ButtonProps, InputProps, RadioProps, RadioGroupProps, CheckboxProps, checkboxGroupProps, ImageProps, SwitchProps, InputNumberProps } from 'element-plus'
 
 // 支持的组件
 export type ComponentObject = {

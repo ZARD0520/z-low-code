@@ -3,6 +3,5 @@ import './style.css'
 import App from './App.vue'
 import ComponentLib from 'component-repo-vue'
 
-createApp(App)
-    .use(ComponentLib)
-    .mount('#app')
+const app = createApp(App)
+app.use(ComponentLib).mount('#app')

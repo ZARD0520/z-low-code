@@ -15,14 +15,14 @@ import {
   ElCol
 } from 'element-plus'
 // 导入二次封装组件
-import Test from './Test/index.vue'
 import Flex from './Layout/Flex/index.vue'
 import Grid from './Layout/Grid/index.vue'
 import Tabs from './Layout/Tabs/index.vue'
 import Charts from './Charts/index.vue'
+import { ComponentObject } from '@/type/form'
 
 // 管理组件
-export const components = {
+export const components: ComponentObject = {
   1: ElButton,
   2: ElInput,
   3: ElRadio,

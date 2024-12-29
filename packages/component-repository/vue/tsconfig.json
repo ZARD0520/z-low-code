@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "declaration": true,
     "jsx": "preserve",
     "importHelpers": true,
     "experimentalDecorators": true,

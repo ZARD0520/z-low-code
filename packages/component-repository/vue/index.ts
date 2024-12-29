@@ -13,19 +13,21 @@ export default {
     if (registerComponents) {
       // 指定注册
       registerComponents.forEach((componentKey) => {
-        const name = componentTypeMap.get(componentKey)
-        if (name && components[componentKey]) {
-          componentMap[componentKey] = components[componentKey]
-          app.component(name, components[componentKey])
+        const key = Number(componentKey)
+        const name = componentTypeMap.get(key)
+        if (name && components[key]) {
+          componentMap[key] = components[key]
+          app.component(name, components[key])
         }
       })
     } else {
       // 全量注册
       Object.entries(components).forEach(([componentKey, component]) => {
-        const name = componentTypeMap.get(componentKey)
+        const key = Number(componentKey)
+        const name = componentTypeMap.get(key)
         if (name) {
-          componentMap[componentKey] = component
-          app.component(name, component);
+          componentMap[key] = component
+          app.component(name, component as any);
         }
       })
     }
