@@ -1,4 +1,5 @@
 to do list
+* 自定义组件支持v-model
 * 利用vue版本基本组件写后台基础静态页面
 * 用已有nest项目建库表、写接口
 * 后台相关联调
@@ -10,6 +11,7 @@ to do list
 * 后台组件编辑器
 * 远程渲染页
 * 其他善尾&&优化工作
+  * vue组件库按需导出导入
 
 <!-- 设计文档 -->
 https://z2431n96ps.feishu.cn/docx/DTFwd2r14opCECxmygfclkK5n1g
