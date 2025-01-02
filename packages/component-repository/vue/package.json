@@ -14,7 +14,8 @@
   "exports": {
     ".": {
       "import": "./dist/index-es.js",
-      "require": "./dist/index-cjs.js"
+      "require": "./dist/index-cjs.js",
+      "types": "./dist/vue/index.d.ts"
     }
   },
   "jest": {
