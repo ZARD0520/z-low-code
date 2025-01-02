@@ -11,7 +11,8 @@ to do list
 * 后台组件编辑器
 * 远程渲染页
 * 其他善尾&&优化工作
-  * vue组件库按需导出导入
+  * vue组件库单独管理&&按需导出导入&&根据package.json控制信息
+  * 远程组件(避免引用项目的重复构建发布)
 
 <!-- 设计文档 -->
 https://z2431n96ps.feishu.cn/docx/DTFwd2r14opCECxmygfclkK5n1g

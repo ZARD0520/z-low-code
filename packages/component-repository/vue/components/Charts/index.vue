@@ -20,7 +20,7 @@ export default defineComponent({
     // and so on...
   },
   setup(props) {
-    const chartRef = ref(null)
+    const chartRef = ref<HTMLElement | null>(null)
     const chartLoading = ref(false)
     let chartInstance: echarts.ECharts
 
@@ -59,7 +59,7 @@ export default defineComponent({
           chartLoading.value = false
         })
       }
-    })
+    }, { deep: true })
 
     return {
       chartLoading

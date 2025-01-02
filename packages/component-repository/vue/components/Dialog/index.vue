@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :model-value="show" :title="title" v-bind="$attrs" width="48%" center :before-close="handleClose">
+  <el-dialog :model-value="modelValue" :title="title" v-bind="$attrs" width="48%" center :before-close="handleClose">
     <slot></slot>
     <template #footer>
       <slot v-if="customFooter" name="footer"></slot>
@@ -17,26 +17,26 @@ import { defineComponent, PropType, watch } from 'vue'
 
 export default defineComponent({
   props: {
-    show: {
-      type: Boolean as PropType<boolean>,
+    modelValue: {
+      type: Boolean,
       default: false
     },
     title: {
-      type: String as PropType<string>,
+      type: String,
       default: '新增'
     },
     customFooter: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       default: false
     },
     buttonLoading: {
-      type: Function as PropType<Function>,
-      default: () => false
+      type: Function,
+      default: () => (() => false)
     }
   },
-  emits:['cancel','reset','confirm'],
+  emits:['update:modelValue','cancel','reset','confirm'],
   setup(props, { emit }) {
-    watch(() => props.show, (value) => {
+    watch(() => props.modelValue, (value) => {
       if (value) {
         resetForm()
       }
@@ -53,6 +53,7 @@ export default defineComponent({
     const handleClose = () => {
       resetForm()
       emit('cancel')
+      emit('update:modelValue', false)
     }
 
     return {
@@ -66,7 +67,7 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
-:deep(.el-form-item__content) {
+::v-deep(.el-form-item__content) {
   display: flex !important;
 }
 </style>

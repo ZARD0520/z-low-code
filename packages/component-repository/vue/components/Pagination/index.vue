@@ -1,7 +1,7 @@
 <template>
   <el-pagination class="pagination" background :layout="layout"
-    :page-sizes="pageSizes" :current-page="pageInfo.current" :page-size="pageInfo.size || 10" :total="pageInfo.total"
-    :page-count="pageInfo.count"
+    :page-sizes="pageSizes" :current-page="modelValue.current" :page-size="modelValue.size || 10" :total="modelValue.total"
+    :page-count="modelValue.count"
     v-bind="$attrs" @size-change="handleSizeChange" @current-change="handleCurrentChange">
   </el-pagination>
 </template>
@@ -14,12 +14,12 @@ export default defineComponent({
   name: 'z-pagination',
   components: {},
   props: {
-    pageInfo: {
+    modelValue: {
       type: Object as PropType<PageInfoType>,
       required: true
     },
     layout: {
-      type: String as PropType<string>,
+      type: String,
       default: 'total, sizes, prev, pager, next, jumper'
     },
     pageSizes: {
@@ -29,15 +29,15 @@ export default defineComponent({
       }
     }
   },
-  emits: [
-    'change'
-  ],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const handleSizeChange = (size: number) => {
-      emit('change', { ...props.pageInfo, size })
+      const { current, total, count } = props.modelValue
+      emit('update:modelValue', { current, size, total, count })
     }
     const handleCurrentChange = (current: number) => {
-      emit('change', { ...props.pageInfo, current })
+      const { size, total, count } = props.modelValue
+      emit('update:modelValue', { current, size, total, count })
     }
     return {
       handleSizeChange,

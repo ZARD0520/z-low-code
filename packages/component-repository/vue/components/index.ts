@@ -19,7 +19,8 @@ import Flex from './Layout/Flex/index.vue'
 import Grid from './Layout/Grid/index.vue'
 import Tabs from './Layout/Tabs/index.vue'
 import Charts from './Charts/index.vue'
-import Dialog from './Dialog/index.vue'
+import Pagination from './Pagination/index.vue'
+import Table from './Table/index.vue'
 import { ComponentObject } from '@/type/form'
 
 // 管理组件
@@ -40,6 +41,7 @@ export const components: ComponentObject = {
   14: Grid,
   15: Tabs,
   16: Charts,
-  17: Dialog,
-  18: ElImage,
+  17: Pagination,
+  18: Table,
+  19: ElImage,
 }
