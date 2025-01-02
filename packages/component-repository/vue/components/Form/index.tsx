@@ -1,7 +1,7 @@
-import { FormColumn } from "@/type/form";
+import { FormColumn } from "../../type/form"
 import { ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, useAttrs } from "vue";
 import { ElForm, ElFormItem } from "element-plus";
-import { components } from "../index";
+import { components } from "./index";
 
 export default defineComponent({
   name: 'z-form',

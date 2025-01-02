@@ -5,7 +5,7 @@ export const columnType = [
   [4, 'slot']
 ]
 
-export const componentType = [
+export const formComponentType = [
   [1, 'z-button'],
   [2, 'z-input'],
   [3, 'z-radio'],
@@ -22,5 +22,7 @@ export const componentType = [
   [14, 'z-grid'],
   [15, 'z-tabs'],
   [16, 'z-charts'],
-  [17, 'z-image']
+  [17, 'z-pagination'],
+  [18, 'z-table'],
+  [19, 'z-image']
 ]
