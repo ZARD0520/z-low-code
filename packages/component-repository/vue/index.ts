@@ -1,10 +1,11 @@
-import { App } from 'vue'
-import { ComponentObject } from '@/type/form'
-import { components } from '@/components/Form'
-import { componentTypeMap } from 'component-common'
-
+import installer from './default'
 // 导入样式
 import './index.css'
 import 'element-plus/dist/index.css'
 
+// 支持按需导入
 export * from 'element-plus'
+export * from './components/index'
+
+// 支持全量导入
+export default installer

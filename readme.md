@@ -1,5 +1,5 @@
 to do list
-* 按需导出、tsx的bug
+* 按需导出、tsx的bug(是否真正按需、form.tsx问题)
 * 利用vue版本基本组件写后台基础静态页面
 * 用已有nest项目建库表、写接口
 * 后台相关联调

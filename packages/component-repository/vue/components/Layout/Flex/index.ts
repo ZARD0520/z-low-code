@@ -7,5 +7,5 @@ Component.install = function (Vue) {
 
 // 默认导出组件
 export {
-  Component,
+  Component as zFlex,
 }

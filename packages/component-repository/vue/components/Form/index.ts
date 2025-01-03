@@ -15,13 +15,13 @@ import {
   ElCol
 } from 'element-plus'
 // 导入二次封装组件
-import Flex from './Layout/Flex/index.vue'
-import Grid from './Layout/Grid/index.vue'
-import Tabs from './Layout/Tabs/index.vue'
-import Charts from './Charts/index.vue'
-import Pagination from './Pagination/index.vue'
-import Table from './Table/index.vue'
-import Form from './index.vue'
+import Flex from '../Layout/Flex/index.vue'
+import Grid from '../Layout/Grid/index.vue'
+import Tabs from '../Layout/Tabs/index.vue'
+import Charts from '../Charts/index.vue'
+import Pagination from '../Pagination/index.vue'
+import Table from '../Table/index.vue'
+import Form from './form'
 import { ComponentObject } from '@/type/form'
 
 // 管理form表单支持的组件
@@ -54,5 +54,5 @@ Form.install = function (Vue) {
 
 // 默认导出组件
 export {
-  Form
+  Form as zForm
 }
