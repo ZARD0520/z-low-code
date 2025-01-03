@@ -1,6 +1,6 @@
 import { zCharts } from './Charts'
 import { zDialog } from './Dialog'
-import { zForm } from './Form'
+// import { zForm } from './Form'
 import { zFlex } from './Layout/Flex'
 import { zGrid } from './Layout/Grid'
 import { zTabs } from './Layout/Tabs'
@@ -10,7 +10,7 @@ import { zTable } from './Table'
 // 按需导出
 export * from './Charts'
 export * from './Dialog'
-export * from './Form'
+// export * from './Form'
 export * from './Layout/Flex'
 export * from './Layout/Grid'
 export * from './Layout/Tabs'
@@ -21,7 +21,7 @@ export * from './Table'
 export default [
   zCharts,
   zDialog,
-  zForm,
+  // zForm,
   zFlex,
   zGrid,
   zTabs,

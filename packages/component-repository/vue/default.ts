@@ -1,5 +1,4 @@
 import type { App, Plugin } from 'vue'
-import ElComponents from 'element-plus/lib/component'
 import CustomComponents from './components/index'
 
 const INSTALLED_KEY = Symbol('INSTALLED_KEY')
@@ -15,4 +14,4 @@ const makeInstaller = (components: any[] = []) => {
   }
 }
 
-export default makeInstaller([...ElComponents, ...CustomComponents])
+export default makeInstaller([...CustomComponents])

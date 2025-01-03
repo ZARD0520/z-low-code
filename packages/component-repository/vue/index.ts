@@ -4,7 +4,6 @@ import './index.css'
 import 'element-plus/dist/index.css'
 
 // 支持按需导入
-export * from 'element-plus'
 export * from './components/index'
 
 // 支持全量导入

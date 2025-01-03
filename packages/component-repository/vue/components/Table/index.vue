@@ -113,7 +113,7 @@
         <slot name="append" />
       </template>
     </el-table>
-    <pagination :pageInfo="pagination" @change="handlePageChange"></pagination>
+    <pagination v-model="pagination" @change="handlePageChange"></pagination>
   </div>
 </template>
 
@@ -124,7 +124,7 @@ import { usePagination } from '@/hooks/usePagination'
 import { columnOptionType } from '@/type/table'
 import { PageInfoType, apiType } from '@/type/pagination'
 import { ElTable, ElTableColumn } from 'element-plus'
-import Pagination from '@/Pagination/index.vue'
+import Pagination from '../Pagination/index.vue'
 
 interface tableState {
   columnsProps: any[]

@@ -4,6 +4,7 @@ import terser from '@rollup/plugin-terser';
 import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import { dts } from 'rollup-plugin-dts'
+import resolve from '@rollup/plugin-node-resolve'
 
 const config = [{
   input: './index.ts',
@@ -16,7 +17,8 @@ const config = [{
       globals: {
         'vue': 'Vue',
         'element-plus': 'elementPlus',
-        'echarts': 'echarts'
+        'echarts': 'echarts',
+        'lodash': 'lodash'
       }
     },
     {
@@ -26,7 +28,8 @@ const config = [{
       globals: {
         'vue': 'Vue',
         'element-plus': 'elementPlus',
-        'echarts': 'echarts'
+        'echarts': 'echarts',
+        'lodash': 'lodash'
       }
     },
     {
@@ -36,12 +39,14 @@ const config = [{
       globals: {
         'vue': 'Vue',
         'element-plus': 'elementPlus',
-        'echarts': 'echarts'
+        'echarts': 'echarts',
+        'lodash': 'lodash'
       }
     }
   ],
-  external: ['vue', 'element-plus', 'element-plus/dist/index.css', 'echarts'],
+  external: ['vue', 'element-plus', 'element-plus/dist/index.css', 'echarts', 'lodash'],
   plugins: [
+    resolve(),
     typescript({
       tsconfig: './tsconfig.json',
       exclude: ['node_modules'],
@@ -61,7 +66,7 @@ const config = [{
   ]
 },
 {
-  input:'./type/index.d.ts',
+  input: './type/index.d.ts',
   plugins: [dts()],
   output: {
     format: 'esm',
