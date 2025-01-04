@@ -18,7 +18,6 @@ export default defineComponent({
   setup(props, { slots, expose }) {
     const formRef: any = ref()
     const attrs: any = useAttrs()
-    const { proxy } = getCurrentInstance() as ComponentInternalInstance
 
     const vFormColumns = computed(() => props.formColumns)
 

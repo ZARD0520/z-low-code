@@ -10,31 +10,8 @@ const config = [{
   input: './index.ts',
   output: [
     {
-      file: 'dist/index-umd.js',
-      format: 'umd',
-      name: 'z-vue-component',
-      sourcemap: true,
-      globals: {
-        'vue': 'Vue',
-        'element-plus': 'elementPlus',
-        'echarts': 'echarts',
-        'lodash': 'lodash'
-      }
-    },
-    {
       file: 'dist/index-es.js',
       format: 'es',
-      sourcemap: true,
-      globals: {
-        'vue': 'Vue',
-        'element-plus': 'elementPlus',
-        'echarts': 'echarts',
-        'lodash': 'lodash'
-      }
-    },
-    {
-      file: 'dist/index-cjs.js',
-      format: 'cjs',
       sourcemap: true,
       globals: {
         'vue': 'Vue',
