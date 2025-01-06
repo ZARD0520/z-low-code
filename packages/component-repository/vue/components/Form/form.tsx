@@ -1,5 +1,5 @@
 import { FormColumn } from "../../type/form"
-import { ComponentInternalInstance, computed, defineComponent, getCurrentInstance, onMounted, PropType, ref, useAttrs } from "vue";
+import { computed, defineComponent, onMounted, PropType, ref, useAttrs } from "vue";
 import { ElForm, ElFormItem } from "element-plus";
 import { components } from "./index";
 
@@ -31,7 +31,7 @@ export default defineComponent({
     }
 
     const showChild = (column: FormColumn) => {
-      return !!column.children
+      return !!column.children && column.children?.type
     }
 
     const bindChildAttr = (item: FormColumn, childItems: any) => {
@@ -150,18 +150,8 @@ export default defineComponent({
       handleRemote(column, columnAttrs)
       handleDisabled(columnAttrs)
 
-      // 是否支持v-model
-      const isModelSupported = hasModel(tag)
-
-      if (!isModelSupported) {
-        return <tag {...columnAttrs} key={column.prop}></tag>
-      }
-
       if (showChild(column)) {
-        if (!column.children?.type) {
-          return
-        }
-        const childTag = components[column.children?.type]
+        const childTag = components[column.children?.type as number]
         children = column.children?.options?.map((child: any) => {
           const childAttrs = bindChildAttr(column, child)
           const childSlot = slots[child.slot]
@@ -170,6 +160,14 @@ export default defineComponent({
           }</childTag>
         })
       }
+      
+      // 是否支持v-model
+      const isModelSupported = hasModel(tag)
+
+      if (!isModelSupported) {
+        return <tag {...columnAttrs} key={column.prop} onChange={column?.actions?.changeAction} onUpdate={column?.actions?.updateAction}>{children}</tag>
+      }
+
       return <tag {...columnAttrs} v-model={attrs.model[column.prop]} key={column.prop} onChange={column?.actions?.changeAction} onUpdate={column?.actions?.updateAction}>{children}</tag>
     }
 
