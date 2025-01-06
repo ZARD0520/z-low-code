@@ -1,7 +1,7 @@
 import { FormColumn } from "@/type/form"
 
 export const showChild = (column: FormColumn) => {
-  return !!column.children
+  return !!column.children && column.children?.type
 }
 
 export const bindChildAttr = (item: FormColumn, childItems: any) => {

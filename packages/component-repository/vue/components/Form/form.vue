@@ -1,7 +1,7 @@
 <template>
   <el-form ref="formRef" v-bind="{ ...attrs }">
     <!-- 表单项组件遍历 -->
-    <div v-for="column in vFormColumns" :key="column.prop" :column="column" :model="attrs.model"></div>
+    <z-form-item v-for="column in vFormColumns" :key="column.prop" :column="column" :model="attrs.model"></z-form-item>
   </el-form>
 </template>
 
@@ -9,11 +9,13 @@
 import { computed, defineComponent, onMounted, PropType, ref, useAttrs } from "vue"
 import { ElForm } from "element-plus"
 import { FormColumn } from "@/type/form"
+import zFormItem from "./component/form-item.vue"
 
 export default defineComponent({
   name: 'z-form',
   components: {
-    ElForm
+    ElForm,
+    zFormItem
   },
   props: {
     formColumns: {
