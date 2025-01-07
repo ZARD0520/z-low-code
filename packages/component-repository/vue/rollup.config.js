@@ -10,7 +10,7 @@ const config = [{
   input: './index.ts',
   output: [
     {
-      file: 'dist/index-es.js',
+      dir: 'dist',
       format: 'es',
       sourcemap: true,
       globals: {
@@ -30,16 +30,14 @@ const config = [{
       sourceMap: true
     }),
     vue({
-      compileTemplate: true,
-      jsx: {
-        factory: 'h'
-      }
+      compileTemplate: true
     }),
     postcss({
       extract: 'css/index.css',
       minimize: true
     }),
     babel({
+      babelHelpers: 'bundled',
       presets: ['@vue/babel-preset-jsx'],
       extensions: ['.tsx', '.vue', '.ts'],
       exclude: 'node_modules/**' // 排除 node_modules

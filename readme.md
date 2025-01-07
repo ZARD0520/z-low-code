@@ -1,6 +1,9 @@
 to do list
 * 二封常见的组件、处理tsx的bug
 * 利用vue版本基本组件写后台基础静态页面
+  * form组件的bug或可能存在的问题
+    * form.tsx：rollup打包有问题
+    * form.vue: 存在潜在的问题，还未试验
 * 用已有nest项目建库表、写接口
 * 后台相关联调
 * vue版本基础组件2

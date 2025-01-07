@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { components } from "../index"
+import { components } from "../componentsMap"
 import { FormColumn } from "@/type/form"
 import { computed, defineComponent, PropType, ref } from "vue"
 import { bindChildAttr, getChildItemAttr, getTagAttr, handleDisabled, handleRemote, hasModel, showChild } from "../utils";

@@ -188,6 +188,9 @@ importers:
         specifier: ^3.5.12
         version: 3.5.12(typescript@5.6.3)
     devDependencies:
+      '@vue/babel-helper-vue-jsx-merge-props':
+        specifier: ^1.4.0
+        version: 1.4.0
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6

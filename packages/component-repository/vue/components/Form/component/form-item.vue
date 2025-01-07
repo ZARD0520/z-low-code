@@ -29,7 +29,7 @@ import { defineAsyncComponent, defineComponent, PropType } from "vue"
 import { ElFormItem } from "element-plus"
 import { FormColumn } from "@/type/form"
 import { getFormItemAttr, handleHidden } from "../utils"
-import { components } from "../index"
+import { components } from "../componentsMap"
 import zComponentItem from "./component-item.vue"
 
 export default defineComponent({

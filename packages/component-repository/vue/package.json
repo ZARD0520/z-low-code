@@ -30,6 +30,7 @@
     }
   },
   "devDependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "@vue/test-utils": "^2.4.6"
   },
   "dependencies": {

@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { components } from '../index'
+import { components } from '../componentsMap'
 import { FormColumn } from "@/type/form"
 import { defineComponent, PropType } from "vue"
 import { getTagAttr } from '../utils'
