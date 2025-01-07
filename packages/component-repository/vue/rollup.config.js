@@ -24,16 +24,20 @@ const config = [{
   external: ['vue', 'element-plus', 'element-plus/dist/index.css', 'echarts', 'lodash'],
   plugins: [
     resolve(),
+    babel({
+      presets: ['@vue/babel-preset-jsx'],
+      exclude: 'node_modules/**' // 排除 node_modules
+    }),
+    vue({
+      compileTemplate: true,
+      jsx: {
+        factory: 'h'
+      }
+    }),
     typescript({
       tsconfig: './tsconfig.json',
       exclude: ['node_modules'],
       sourceMap: true
-    }),
-    babel({
-      exclude: 'node_modules/**' // 排除 node_modules
-    }),
-    vue({
-      compileTemplate: true
     }),
     postcss({
       extract: 'css/index.css',

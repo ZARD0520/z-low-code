@@ -5,6 +5,8 @@
     "moduleResolution": "node",
     "declaration": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "importHelpers": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,

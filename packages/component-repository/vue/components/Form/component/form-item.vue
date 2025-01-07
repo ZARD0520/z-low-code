@@ -10,7 +10,14 @@
   <!-- 普通组件项 -->
   <z-component-item v-else-if="column.columnType === 2" :column="column" :model="model"></z-component-item>
   <!-- 布局项 -->
-  <z-layout-item v-else-if="column.columnType === 3" :column="column" :model="model"></z-layout-item>
+  <Suspense v-else-if="column.columnType === 3">
+    <template #default>
+      <z-layout-item :column="column" :model="model"></z-layout-item>
+    </template>
+    <template #fallback>
+      <span>Loading...</span>
+    </template>
+  </Suspense>
   <!-- 插槽 -->
   <slot v-else-if="column.columnType === 4 && column.parentSlot" :name="column.parentSlot"
     :data="{ row: model, column }">
@@ -18,19 +25,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue"
+import { defineAsyncComponent, defineComponent, PropType } from "vue"
 import { ElFormItem } from "element-plus"
 import { FormColumn } from "@/type/form"
 import { getFormItemAttr, handleHidden } from "../utils"
 import { components } from "../index"
 import zComponentItem from "./component-item.vue"
-import zLayoutItem from "./layout-item.vue"
 
 export default defineComponent({
   name: 'z-form-item',
   components: {
     ElFormItem,
-    zLayoutItem,
     zComponentItem
   },
   props: {
@@ -44,10 +49,12 @@ export default defineComponent({
     }
   },
   setup() {
+    const zLayoutItem = defineAsyncComponent(() => import('./layout-item.vue'))
     return {
       getFormItemAttr,
       handleHidden,
-      components
+      components,
+      zLayoutItem
     }
   }
 })
