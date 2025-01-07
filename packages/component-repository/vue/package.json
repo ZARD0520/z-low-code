@@ -35,11 +35,12 @@
   "dependencies": {
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.9.0",
+    "@vue/babel-preset-jsx": "^1.4.0",
     "@vue/runtime-dom": "^3.5.13",
+    "component-common": "workspace:^",
     "element-plus": "^2.9.0",
     "lodash": "^4.17.21",
     "rollup-plugin-vue": "^6.0.0",
-    "vue": "^3.5.12",
-    "component-common": "workspace:^"
+    "vue": "^3.5.12"
   }
 }

@@ -24,9 +24,10 @@ const config = [{
   external: ['vue', 'element-plus', 'element-plus/dist/index.css', 'echarts', 'lodash'],
   plugins: [
     resolve(),
-    babel({
-      presets: ['@vue/babel-preset-jsx'],
-      exclude: 'node_modules/**' // 排除 node_modules
+    typescript({
+      tsconfig: './tsconfig.json',
+      exclude: ['node_modules'],
+      sourceMap: true
     }),
     vue({
       compileTemplate: true,
@@ -34,14 +35,14 @@ const config = [{
         factory: 'h'
       }
     }),
-    typescript({
-      tsconfig: './tsconfig.json',
-      exclude: ['node_modules'],
-      sourceMap: true
-    }),
     postcss({
       extract: 'css/index.css',
       minimize: true
+    }),
+    babel({
+      presets: ['@vue/babel-preset-jsx'],
+      extensions: ['.tsx', '.vue', '.ts'],
+      exclude: 'node_modules/**' // 排除 node_modules
     }),
     terser()
   ]

@@ -17,7 +17,7 @@
   <template v-else-if="[15].includes(column.type)">
     <component :is="layoutComponent" :key="column.prop" v-bind="columnAttrs" :tabs="column.children?.options"
       @update="column.actions?.updateAction">
-      <template v-for="childTab in column.children?.options" :key="childTab.name" v-slot:['childTab.name']>
+      <template v-for="childTab in column.children?.options" :key="childTab.name" v-slot:childTab.name>
         <Suspense>
           <template #default>
             <z-form-item v-for="childColumn in childTab.children?.options" :key="childColumn.prop" :column="childColumn"
